@@ -1,0 +1,162 @@
+<html>
+<head>
+    <title>EMI calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+ <script  src="js/bootstrap.bundle.min.js"></script>
+ <script>
+    function calculate()
+    {
+    window.alert("EMI CALCULATOR");
+    var cname=document.getElementById("name").value;
+    document.getElementById("demo1").innerHTML=cname;
+
+    var p=parseFloat(document.getElementById("pamt").value);
+    document.getElementById("demo2").innerHTML="Rs "+p;
+
+    var mod=document.getElementById("mod").value;
+    if(mod=='1'){
+        document.getElementById("demo3").innerHTML="Monthly";
+    }
+    else{
+        document.getElementById("demo3").innerHTML="Yearly";
+    }
+    
+
+    var type=document.getElementById("type").value;
+    document.getElementById("demo4").innerHTML=type;
+
+    var n=parseFloat(document.getElementById("tenure").value);
+    document.getElementById("demo5").innerHTML=n;
+
+    var r=parseFloat(document.getElementById("ri").value);
+    document.getElementById("demo6").innerHTML=document.getElementById("ri").value+" %";
+    switch(mod)
+    {
+        case '1':
+            {
+                var emi;
+                var R=r/(1200);
+                emi=(p*R*((1+R)**n))/(((1+R)**n)-1);
+                document.getElementById("demo7").innerHTML="Rs "+Math.round(emi);
+                document.getElementById("demo8").innerHTML="Rs "+Math.round((emi*n)-p);
+                document.getElementById("demo9").innerHTML="Rs "+Math.round(emi*n);
+    
+                break;
+            }
+            case '2':
+            {
+                var emi;
+                var R=r/(1200);
+                var N=n*12;
+                emi=(p*R*((1+R)**N))/(((1+R)**N)-1);
+                document.getElementById("demo7").innerHTML="Rs "+Math.round(emi);
+                document.getElementById("demo8").innerHTML="Rs "+Math.round((emi*N)-p);
+                document.getElementById("demo9").innerHTML="Rs "+Math.round(emi*N);
+                break;
+            }
+            document.getElementById("demo9").innerHTML="Rs "+emi*N;
+    }
+    }
+</script>
+</head>
+<body >
+    <div class="container pt-4"  style="background-color:burlywood; border-radius: 15px;width: fit-content; margin-top: 30px;padding: 30px;">
+<form action="" method="post">
+    <h4 style="color: chocolate;text-align: center;text-decoration: underline;" ><b>EMI CALCULATOR</b></h4>
+   
+    <label for="name">ENTER CUSTOMER NAME</label><br>
+    <input type="text" name="name" id="name"><br><br>
+
+    <label for="type">ENTER LOAN TYPE: </label>
+    <select name="type" id="type">
+        <option value="CAR LOAN">CAR LOAN</option>
+        <option value="HOME LOAN">HOME LOAN</option>
+        <option value="PERSONAL LOAN">PERSONAL LOAN</option>
+    </select><br><br>
+   
+    <label for="pamt">ENTER PRINCIPAL AMOUNT</label><br>
+    <input type="number" name="pamt" id="pamt"><br><br>
+
+
+    <label for="ri">ENTER RATE OF INTEREST</label><br>
+    <input type="number" name="ri" id="ri"><br><br>
+
+
+    <label for="mod">SELECT PAYMENT MODE: </label>
+    <select name="mod" id="mod">
+        <option value="1">MONTHLY</option>
+        <option value="2">YEARLY</option>
+    </select><br><br>
+
+
+    <label for="tenure">ENTER LOAN TENURE</label><br>
+    <input type="number" name="tenure" id="tenure"><br><br>
+
+    <input type="button" value="CALCULATE" style="color:white; background-color: cadetblue;" onclick="calculate()">
+
+</form>
+</div>
+    
+
+<div class="container mt-2 mb-5">
+
+    
+   
+    <div class="container mt-5">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2" align="center"><b>DETAILS</b></td>
+            </tr>
+                <tr class="table-info">
+                   <td> CUSTOMER NAME</td>
+                  <td><span id="demo1"></span></td>
+                </tr>
+ 
+                <tr class="table-white">
+                    <td> PRINCIPAL AMOUNT</td>
+                   <td><span><p id="demo2"></p></span></td>
+                </tr>
+
+                <tr class="table-info">
+                    <td>PAYMENT MODE</td>
+                    <td><span><p id="demo3"></p></span></td>
+                </tr>
+
+                <tr class="table-white">
+                    <td>TYPE OF LOAN</td>
+                    <td><span><p id="demo4"></p></span></td>
+                </tr>
+       
+       
+                 <tr class="table-info">
+                    <td>LOAN TENURE</td>
+                    <td><span><p id="demo5"></p></span></td>
+                </tr>
+
+                <tr class="table-white">
+                   <td>INTEREST RATE</td>
+                   <td><span><p id="demo6"></p></span></td>
+                </tr>
+
+                <tr class="table-info">
+                   <td>LOAN EMI</td>
+                   <td><span><p id="demo7"></p></span></td>
+                </tr>
+
+            
+                <tr  class="table-white">
+                    <td>INTREST PAYABLE</td>
+                   <td><span><p id="demo8"></p></span></td>
+                </tr>
+       
+                <tr class="table-info">
+                    <td>TOTAL PAYMENT</td>
+                    <td><span><p id="demo9"></p></span></td>
+               </tr>
+   
+    </table>
+</div> 
+</div>
+</body>
+</html>
